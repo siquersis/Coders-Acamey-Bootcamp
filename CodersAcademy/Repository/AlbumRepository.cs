@@ -17,10 +17,10 @@ namespace CodersAcademy.Api.Repository
         }
 
         public async Task<IList<Album>> GetAllAsync()
-            => await this.Context.Albuns.ToListAsync();
+            => await this.Context.Albums.Include(x => x.Musics).ToListAsync();
 
         public async Task<Album> GetAlbumByIdAsync(Guid id)
-            => await this.Context.Albuns.Where(x => x.Id == id).FirstOrDefaultAsync();
+            => await this.Context.Albums.Include(x => x.Musics).Where(x => x.Id == id).FirstOrDefaultAsync();
 
         public async Task DeleteAsync(Album model)
         {
@@ -30,7 +30,7 @@ namespace CodersAcademy.Api.Repository
 
         public async Task CreateAsync(Album album)
         {
-            await this.Context.Albuns.AddAsync(album);
+            await this.Context.Albums.AddAsync(album);
             await this.Context.SaveChangesAsync();
         }
     }

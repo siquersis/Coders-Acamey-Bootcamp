@@ -8,7 +8,7 @@ namespace CodersAcademy.Api.ViewModel.Profile
         public AlbumProfile ()
         {
             CreateMap<AlbumRequest, Album>();
-               
+            CreateMap<MusicRequest, Music>();
         }
 
     }

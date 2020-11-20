@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text.Json.Serialization;
 
 namespace CodersAcademy.Api.Model
 {
@@ -11,6 +11,7 @@ namespace CodersAcademy.Api.Model
 
         public int Duration { get; set; }
 
+        [JsonIgnore]
         public Album Album { get; set; }
     }
 }
