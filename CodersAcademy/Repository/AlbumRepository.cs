@@ -33,5 +33,9 @@ namespace CodersAcademy.Api.Repository
             await this.Context.Albums.AddAsync(album);
             await this.Context.SaveChangesAsync();
         }
+
+        public async Task<Music> GetMusicAsync(Guid musicId)
+        => await this.Context.Music.Where(x => x.Id == musicId).FirstOrDefaultAsync();
+        
     }
 }

@@ -1,19 +1,20 @@
 ﻿using AutoMapper;
 using CodersAcademy.Api.Model;
 using CodersAcademy.Api.Repository;
-using CodersAcademy.Api.ViewModel.Request;
+using CodersAcademy.API.ViewModel.Request;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace CodersAcademy.Controllers
+namespace CodersAcademy.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AlbumController : ControllerBase
     {
         private AlbumRepository Repository { get; init; }
+
         private IMapper Mapper { get; set; }
 
         public AlbumController(AlbumRepository repository, IMapper mapper)
@@ -33,7 +34,7 @@ namespace CodersAcademy.Controllers
         {
             var result = await this.Repository.GetAlbumByIdAsync(id);
 
-            if (result != null)
+            if (result == null)
                 return NotFound();
 
             return Ok(result);
@@ -45,9 +46,7 @@ namespace CodersAcademy.Controllers
         public async Task<IActionResult> SaveAlbuns(AlbumRequest request)
         {
             if (ModelState.IsValid == false)
-            {
                 return BadRequest(ModelState);
-            }
 
             Album album = this.Mapper.Map<Album>(request);
 
@@ -71,5 +70,6 @@ namespace CodersAcademy.Controllers
 
             return NoContent();
         }
+
     }
 }

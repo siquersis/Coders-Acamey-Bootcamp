@@ -33,6 +33,7 @@ namespace CodersAcademy
             services.AddAutoMapper(typeof(Startup).Assembly);
 
             services.AddScoped<AlbumRepository>();
+            services.AddScoped<UserRepository>();
 
             services.AddSwaggerGen(c =>
             {
